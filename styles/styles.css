@@ -10,3 +10,18 @@ main {
 .button {
     margin-top: 5px;
 }
+
+.itemTitle {
+    color: blue;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.itemBody {
+    color: gray;
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    padding-top: 0;
+}
