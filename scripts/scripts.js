@@ -7,7 +7,7 @@ const results = document.getElementById('results');
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM loaded");
 
-    const rootUrl = 'https://api.github.com/users/'
+    const rootUrl = 'https://api.github.com/users/';
 
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
