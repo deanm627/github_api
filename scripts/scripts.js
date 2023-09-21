@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     const rootUrl = 'https://api.github.com/repos/facebook/create-react-app/issues';
 
     const issuesListObj = await getInfo(rootUrl);
-    console.log(issuesListObj);
     makeList(issuesListObj);
     
 });
@@ -40,23 +39,33 @@ function makeList(obj) {
     issues.innerHTML = "";
     const list = document.createElement('ul');
     for (let i=0; i<Object.keys(obj).length; i++) {
+        const pair = document.createElement('ul');
+        
         for (const [key, value] of Object.entries(obj[i])) {
-            const item = document.createElement('a');
-            item.classList.add('itemTitle');
-            const itemBody = document.createElement('p');
-            itemBody.classList.add('itemBody');
-            if (key === 'url') {
-                item.value = value;
-            }
+            // ----can't use this due to CORS restriction 
+            // if (key === 'url') {
+            //     item.value = value;
+            // }
+            
             if (key === 'title') {
-                item.innerText = value;
+                const itemTitle = document.createElement('button');
+                itemTitle.classList.add('itemTitle');
+                itemTitle.innerText = value;
+                pair.appendChild(itemTitle);
             }
             if (key === 'body') {
+                const itemBody = document.createElement('p');
+                itemBody.classList.add('itemBody');
                 itemBody.innerText = value;
+                pair.appendChild(itemBody);
             }
-            item.appendChild(itemBody);
-            list.appendChild(item);
-            }
+            list.appendChild(pair);
+        }
+
+        pair.addEventListener('click', function() {
+            issues.innerHTML = "";
+            issues.appendChild(pair);
+        });
     }
     issues.appendChild(list);
     return;
